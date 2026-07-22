@@ -1,19 +1,19 @@
-FROM python:3.11-slim
+FROM node:20-slim
 
 # Cài FFmpeg
-RUN apt-get update && apt-get install -y ffmpeg && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+    apt-get install -y ffmpeg && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY package*.json ./
+RUN npm install
 
 COPY . .
 
-# Tạo thư mục lưu video
-VOLUME /data
-RUN mkdir -p /data
+RUN mkdir -p /data/uploads
 
-EXPOSE 8080
+EXPOSE 3000
 
-CMD ["python", "app.py"]
+CMD ["node", "server.js"]
