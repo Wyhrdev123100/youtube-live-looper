@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YouTube Live Loop 24/7</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-light">
+<div class="container mt-5">
+  <h2 class="text-center mb-4">🎥 YouTube Live Loop 24/7</h2>
+
+  <div class="card bg-secondary p-4">
+    <h5>Trạng thái: <strong>{{ status }}</strong></h5>
+    <p><strong>Video đang dùng:</strong> {{ video_name }}</p>
+
+    <form method="POST" enctype="multipart/form-data" class="mb-4">
+      <div class="mb-3">
+        <label class="form-label">Upload Video</label>
+        <input type="file" name="video" class="form-control" accept="video/*">
+      </div>
+      <button type="submit" class="btn btn-primary">Tải Video Lên</button>
+    </form>
+
+    <form method="POST">
+      <div class="mb-3">
+        <label class="form-label">Mã sự kiện trực tiếp (Stream Key)</label>
+        <input type="text" name="stream_key" class="form-control" placeholder="abcd-1234-efgh-5678" required>
+        <small class="text-muted">Dán Stream Key từ YouTube Studio vào đây</small>
+      </div>
+      <button type="submit" name="start" class="btn btn-success btn-lg w-100 mb-2">▶️ BẮT ĐẦU LIVE LOOP</button>
+      <button type="submit" name="stop" class="btn btn-danger w-100">⛔ Dừng Stream</button>
+    </form>
+  </div>
+
+  <div class="mt-4 text-center text-warning small">
+    ⚠️ Railway free tier có thể bị ngắt sau vài giờ. Nên dùng VPS (Oracle Cloud, Hetzner) nếu muốn thật 24/7.
+  </div>
+</div>
+</body>
+</html>
